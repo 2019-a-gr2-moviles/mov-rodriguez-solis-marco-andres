@@ -40,13 +40,13 @@ fun main(args: Array<String>){
     //Condicionales
 
     if(apellido == "Rodríguez" && nombre == "Marco"){
-        println("Verdadero")
+        //println("Verdadero")
     }else{
-        println("Falso")
+        //println("Falso")
     }
 
     val tieneNombreyApellido = if (apellido!=null && nombre!=null) "ok" else "no"
-    println(tieneNombreyApellido)
+    //println(tieneNombreyApellido)
 
 
     estaJalado(1.0)
@@ -54,11 +54,11 @@ fun main(args: Array<String>){
     estaJalado(0.0)
     estaJalado(7.0)
     estaJalado(10.0)
-    println("------------")
+    //println("------------")
     holaMundo("Marco")
     holaMundoAvanzado(2)
     val total = sumarDosNumeros(1,3)
-    println(total)
+    //println(total)
     //Importante: numUno y numDos los pone el editor de texto
 
     val arregloCumpleanos: Array<Int> = arrayOf(1,2,3,4)
@@ -90,20 +90,20 @@ fun main(args: Array<String>){
     }
 
     notasDos.forEach{
-        println("Notas 2: $it")
+        //println("Notas 2: $it")
     }
 
-    println("----------------")
+    //println("----------------")
 
     //ForEach -> Itera el arreglo
     notas.forEachIndexed { indice, nota ->
-        println("Indice: $indice")
-        println("Nota: $nota")
+        //println("Indice: $indice")
+        //println("Nota: $nota")
 
         //return Unit
     }
 
-    println("-------------------")
+    //println("-------------------")
 
     val respuestaFilter = notas.filter {//filtra el arreglo
         it in 3..4
@@ -121,7 +121,7 @@ fun main(args: Array<String>){
         it == 3
     }
 
-    println(respuestaNovia) //true
+    //println(respuestaNovia) //true
 
     val tazos = arrayListOf(1,2,3,4,5,6,7)
 
@@ -129,19 +129,21 @@ fun main(args: Array<String>){
         it > 1
     }
 
-    println(respuestaTazos) //false
+    //println(respuestaTazos) //false
 
     val totalTazos = tazos.reduce { valorAcumulado, tazo ->
         valorAcumulado + tazo
     }
 
-    println(totalTazos)
+    //println(totalTazos)
 
 
     //val fecha = Date()
     //fecha.time = 11231231
     //fecha.year = 2000
     //fecha = Date(1989,6,10)
+
+    val numerito = Numero(1.toString())
 
 }
 
@@ -176,4 +178,99 @@ fun estaJalado(nota: Double): Double {
     }
     return nota
 }
+
+//NUEVO TEMA
+
+class Usuario(val cedula:String){
+
+    public var nombre:String = ""
+    public var apellido:String = "";
+
+    constructor(cedula: String, apellido:String):this(cedula) {
+        this.apellido = apellido
+    }
+}
+
+class Numero(var numero:Int){
+    constructor(numeroString:String):this(numeroString.toInt()){
+        println("Constructor")
+    }
+
+    init {
+        println("INIT")
+    }
+}
+
+
+
+class UsuarioKT(public var nombre:String, public var apellido:String,
+                private var id:Int, protected var id_:Int){
+
+    init {
+
+    }
+
+    public fun hola():String{
+        return this.apellido
+    }
+    private fun hola2(){
+
+    }
+    protected fun hola3(){
+
+    }
+
+    companion object {
+        val gravedad = 10.5
+        fun correr(){
+            println("Estoy corriendo en $gravedad")
+        }
+    }
+}
+
+class BaseDeDatos{
+    companion object {
+        val usuarios = arrayListOf(1,2,3)
+        fun agregarUsuario(usuario:Int){
+            this.usuarios.add(usuario)
+        }
+    }
+}
+
+fun aa(){
+    UsuarioKT.gravedad //propiedad
+    UsuarioKT.correr() //metodo
+}
+
+open class Numeros(var numeroUno:Int, var numeroDos:Int){
+
+}
+class Suma(numeroUnos:Int,numeroDoss:Int):Numeros(numeroUnos,numeroDoss){
+
+}
+
+fun cc(){
+    val a = Suma(1,2)
+}
+
+fun a(){
+    var marco = UsuarioKT("a","b",1,2)
+}
+
+//Int? a veces va a ser nuelo
+
+fun presley(requerido:Int, opcional:Int = 1, nulo:UsuarioKT?){
+    if(nulo !=  null){
+        nulo.nombre
+    }
+    val nombresito:String? = nulo?.nombre.toString()
+    nulo!!.nombre
+}
+ fun cd(){
+     presley(requerido = 1, nulo = null) //Named Parameters
+     presley(1,1,null)
+     presley(1,1,null)
+ }
+
+
 
