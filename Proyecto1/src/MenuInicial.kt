@@ -34,12 +34,14 @@ class MenuPrincipal(title: String) : JFrame() {
     private val botonActualizar: JButton = JButton("Actualizar")
     private val botonEliminar: JButton = JButton("Eliminar")
     private val botonInsertar: JButton = JButton("Insertar")
-
+    val labelImagen: JLabel = JLabel("")
+    val iconLogo: ImageIcon  =  ImageIcon("src/imagen/descarga.png")
     private val panel: JPanel = JPanel()
     private val listaHeroes: ListaHeroes = ListaHeroes()
 
 
     init {
+        labelImagen.icon = iconLogo
         createUI(title)
     }
 
@@ -49,17 +51,19 @@ class MenuPrincipal(title: String) : JFrame() {
 
         panel.setLayout(null)
         panel.add(botonVer)
-        botonVer.setBounds(10, 10, 100, 50)
+        botonVer.setBounds(65, 10, 150, 40)
         panel.add(botonActualizar)
-        botonActualizar.setBounds(120, 10, 100, 50)
+        botonActualizar.setBounds(65, 60, 150, 40)
         panel.add(botonEliminar)
-        botonEliminar.setBounds(10, 80, 100, 50)
+        botonEliminar.setBounds(65, 110, 150, 40)
         panel.add(botonInsertar)
-        botonInsertar.setBounds(120, 80, 100, 50)
+        botonInsertar.setBounds(65, 160, 150, 40)
+        panel.add(labelImagen)
+        labelImagen.setBounds(30, 210, 250, 250 )
 
         this.add(panel)
         defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-        setSize(250, 180)
+        setSize(300, 500)
         setLocationRelativeTo(null)
     }
 
@@ -120,6 +124,8 @@ class insertarHeroe(title: String, listaHeroes: ListaHeroes) : JFrame(){
     private fun createUI(title: String) {
         setTitle(title)
         panel.layout = null
+
+
 
         labelIdHeroe.setBounds(5, 5, 150, 25)
         txtIdHeroe.setBounds(160, 5, 150, 25)
@@ -277,7 +283,6 @@ class ActualizarHeroe(title: String, listaHeroes: ListaHeroes): JFrame() {
 
         botonEditar.setBounds(220, 130, 100, 30)
         botonActualizar.setBounds(220, 345, 100, 30)
-
 
         labelIdHeroe.setBounds(100, 185, 150, 25)
         txtIdHeroe.setBounds(250, 185, 150, 25)
