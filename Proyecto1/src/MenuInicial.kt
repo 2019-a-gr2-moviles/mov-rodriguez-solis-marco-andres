@@ -1,13 +1,14 @@
 import java.awt.*
+import java.awt.event.WindowEvent
 import javax.swing.*
 import javax.swing.table.DefaultTableModel
 
 fun main(args: Array<String>) {
 
 
-    val frame: MenuPrincipal = MenuPrincipal("DOTA 2")
-    frame.showEventDemo()
-    frame.show()
+    val framePrimero: MenuPrincipal = MenuPrincipal("DOTA 2")
+    framePrimero.showEventDemo()
+    framePrimero.show()
 
     //val frame = JFrame("DOTA 2")
 
@@ -71,7 +72,10 @@ class MenuPrincipal(title: String) : JFrame() {
 
         botonVer.apply {
             addActionListener {
-                BuscarHeroes("Heroes", listaHeroes).show()
+                BuscarHeroes("Ver Heroe", listaHeroes).show()
+
+
+
             }
         }
         botonActualizar.apply {
@@ -112,7 +116,7 @@ class insertarHeroe(title: String, listaHeroes: ListaHeroes) : JFrame(){
     val txtTipo: JTextField = JTextField()
     val txtRolPrincipal: JTextField = JTextField()
     val txtHabilidadFinal: JTextField = JTextField()
-    val boton: JButton = JButton("Ingresar")
+    val boton: JButton = JButton("Insertar")
     var listaHeroes: ListaHeroes
 
     init {
@@ -185,7 +189,7 @@ class insertarHeroe(title: String, listaHeroes: ListaHeroes) : JFrame(){
                         )
 
                         JOptionPane.showConfirmDialog(null, "Está seguro de agregar al Heroe")
-                        this.show(false)
+                        //this.show(false)
                     } else {
                         JOptionPane.showMessageDialog(null, "ID ya existente")
                     }
@@ -199,24 +203,30 @@ class insertarHeroe(title: String, listaHeroes: ListaHeroes) : JFrame(){
 }
 
 class BuscarHeroes(title: String, listaHeroes: ListaHeroes): JFrame() {
+
+    val frameRegresar: JFrame = JFrame()
     val JPanel = JPanel()
     val tabla: JTable = JTable()
     val listaHeroes: ListaHeroes
+   // val botonBack: JButton = JButton("Regresar")
 
 
     init {
         this.listaHeroes = listaHeroes
         createUI(title)
+
     }
 
     private fun createUI(title: String) {
+        frameRegresar.add(JPanel)
         setTitle(title)
         val layout = BorderLayout()
+//        frameRegresar.add(JPanel)
         JPanel.layout = layout
         tabla.model = llenarTabla()
         JPanel.add(tabla, BorderLayout.NORTH)
+      //  JPanel.add(botonBack)
         this.add(JPanel)
-        //defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         setSize(600, 150)
         setLocationRelativeTo(null)
     }
@@ -248,6 +258,23 @@ class BuscarHeroes(title: String, listaHeroes: ListaHeroes): JFrame() {
         return tabla
     }
 
+    /*internal fun showEventDemo() {
+
+        botonBack.apply {
+            addActionListener {
+                println("Si entra")
+
+                frameRegresar.dispose()
+                frameRegresar.dispatchEvent(WindowEvent(frameRegresar, WindowEvent.WINDOW_CLOSING))
+                /*val frameMenu: MenuPrincipal = MenuPrincipal("Dota2")
+                frameMenu.showEventDemo()
+                frameMenu.show()*/
+
+
+
+            }
+        }
+    }*/
 }
 
 class ActualizarHeroe(title: String, listaHeroes: ListaHeroes): JFrame() {
@@ -387,216 +414,63 @@ class ActualizarHeroe(title: String, listaHeroes: ListaHeroes): JFrame() {
         }
     }
 }
-    /* ventanaactualizar.add(panel, BorderLayout.NORTH);
-
-    ventanaactualizar.getContentPane().add(panelBoton, BorderLayout.CENTER);
-    ventanaactualizar.getContentPane().add(panelCampos, BorderLayout.SOUTH);
-
-    //Instancio la tabla
-    var dtm=llenarTabla();
-    var tabla = JTable(dtm);
-    tabla.dragEnabled = false;
-
-    //Creo el scroll pane que contendra a la tabla
-    var jsp = JScrollPane(tabla)
-    panelTabla.add(jsp);
-
-    var botonEscojer = JButton("Editar");
-    panelBoton.add(botonEscojer);
-
-
-    var label1 = JLabel("Tipo:", 10)
-
-    var textTipo = JTextField("", 10)
-
-    var label2 = JLabel("Descripcion:", 10)
-    var textDescripcion = JTextField("", 10)
-
-    var label3 = JLabel("Marca:", 10)
-    var textMarca = JTextField("", 10)
-
-    var label4 = JLabel("Precio:", 10)
-    var textPrecio = JTextField("", 10)
-
-    var boton = JButton("Confirmar actualización");
-    var botonvoler = JButton("VOLVER");
-
-
-    val experimentLayout = GridLayout(5, 2, 20, 20)
-    panelCampos.setLayout(experimentLayout);
-
-    panelCampos.add(label1);
-    panelCampos.add(textTipo);
-    panelCampos.add(label2);
-    panelCampos.add(textDescripcion);
-    panelCampos.add(label3);
-    panelCampos.add(textMarca);
-    panelCampos.add(label4);
-    panelCampos.add(textPrecio);
-    panelCampos.add(botonvoler);
-    panelCampos.add(boton);
 
 
 
-    ventanaactualizar.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-    //ventanainsert.preferredSize = Dimension(400, 300)
-    ventanaactualizar.pack()
-    ventanaactualizar.setLocationRelativeTo(null)
-    ventanaactualizar.isVisible = true
-
-    botonvoler.addActionListener {
-        llamarVentanaInicial();
-        ventanaactualizar.dispose();
-    }
-
-    var id = -1;
-    botonEscojer.addActionListener {
-        var i = tabla.getSelectedRow();
-        if(i!=-1){
-            id = dtm.getValueAt(i, 0).toString().toInt();
-            var tipoaux = dtm.getValueAt(i, 1);
-            var descaux = dtm.getValueAt(i, 2);
-            var marcaaux = dtm.getValueAt(i, 3);
-            var precioaux = dtm.getValueAt(i, 4);
-
-            textTipo.text = tipoaux.toString();
-            textDescripcion.text = descaux.toString();
-            textMarca.text = marcaaux.toString();
-            textPrecio.text = precioaux.toString();
-        }else{
-            JOptionPane.showMessageDialog(null,"Escoja un registro para actualizar!");
-        }
-
-    }
-
-    boton.addActionListener {
-
-        if (id != -1 && !textTipo.getText().isEmpty() && !textDescripcion.getText().isEmpty() &&
-            !textMarca.getText().isEmpty() && !textPrecio.getText().isEmpty()
-        ) {
-            actualizarTupla(
-                id,
-                textTipo.getText(),
-                textDescripcion.getText(),
-                textMarca.getText(),
-                textPrecio.getText().toDouble()
-            );
-
-        }
-
-
-    }
-}*/
-/*class ModificarZapatos(title: String, listaZapatos: ListaHeroes) : JFrame() {
-    private val panel: JPanel = JPanel()
-    private val boton: JButton = JButton("Buscar Heroe")
-    private val comboCodigos: JComboBox<String> = JComboBox()
-    private var listaZapatos: ListaHeroes
-    private val listaMarcas = arrayListOf<String>("Adidas", "Puma", "Nike", "Reebook", "Umbro", "Lotto")
-    private val listaTipos = arrayListOf<String>("Hombre", "Mujer")
-    private val comboMarca: JComboBox<String> = JComboBox()
-    private val comboTipo: JComboBox<String> = JComboBox()
-    private val comboTalla: JComboBox<String> = JComboBox()
-
+class Eliminar2(title: String, listaHeroes: ListaHeroes):JFrame(){
+    val JPanel = JPanel()
+    val table: JTable = JTable()
+    val listaHeroes: ListaHeroes
 
     init {
-        listaMarcas.forEach { marca: String ->
-            comboMarca.addItem(marca)
-        }
-
-        listaTipos.forEach { tipo: String ->
-            comboTipo.addItem(tipo)
-        }
-
-        this.listaZapatos = listaZapatos
-
-
-        listaZapatos.obtenerHeroes().forEach { t: Heroe ->
-            comboCodigos.addItem(t.getIdHeroe())
-        }
+        this.listaHeroes = listaHeroes
         createUI(title)
     }
-
     private fun createUI(title: String) {
         setTitle(title)
-
-        panel.layout = GridLayout()
-        //txtCodigo.setSize(200, 100)
-        //boton.setSize(100, 100)
-        panel.add(comboCodigos)
-        panel.add(boton)
-        this.add(panel)
+        val layout = BorderLayout()
+        JPanel.layout = layout
+        table.model = llenarTabla()
+        JPanel.add(table, BorderLayout.NORTH)
+        this.add(JPanel)
         //defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-        setSize(600, 100)
+        setSize(600, 150)
         setLocationRelativeTo(null)
     }
 
-    internal fun showEventDemo() {
+    private fun llenarTabla(): DefaultTableModel {
+        val tabla = DefaultTableModel()
 
-        val botonBuscar = boton.apply {
-            //ctionCommand = "Buscar"
-            addActionListener {
-                if (comboCodigos.selectedIndex > -1) {
-                    val codigoZapato = comboCodigos.selectedItem.toString()
-                    val existe = listaZapatos.existe(codigoZapato)
-                    if (existe) {
-                        val color = JOptionPane.showInputDialog("Ingrese el color")
-                        val talla = JOptionPane.showInputDialog(
-                            "Ingrese la talla: ${comboTalla.getItemAt(0)} - " +
-                                    "${comboTalla.getItemAt((comboTalla.itemCount - 1))}"
-                        )
-                        var mensajeTipo = "Ingrese el tipo: "
-                        listaMarcas.forEach { s: String ->
-                            mensajeTipo += (", $s")
-                        }
+        tabla.addColumn("idHeroes")
+        tabla.addColumn("Nombre")
+        tabla.addColumn("Tipo")
+        tabla.addColumn("Rol Principal")
+        tabla.addColumn("Habilidad Final")
 
-                        var mensajeMarca = "Ingrese la marca: "
-                        listaMarcas.forEach { s: String ->
-                            mensajeMarca += (", $s")
-                        }
 
-                        val tipo = JOptionPane.showInputDialog(mensajeTipo)
-                        val marca = JOptionPane.showInputDialog(mensajeMarca)
-                        val cantidad = JOptionPane.showInputDialog("Ingrese la cantidad")
-                        val precio = JOptionPane.showInputDialog("Ingrese el precio")
+        tabla.addRow(arrayOf("idHeroe", "Nombre", "Tipo", "Rol Principal", "Habilidad Final"))
 
-                        if ((listaMarcas.any { s ->
-                                String
-                                s.equals(marca)
-                            }) &&
-                            (listaTipos.any { s: String ->
-                                s.equals(tipo)
-                            }) &&
-                            ((talla.toInt() in 30..42))) {
-                            listaZapatos.actualizarHeroe(
-                                color,
-                                tipo,
-                                talla.toInt(),
-                                codigoZapato,
-                                marca,
-                                cantidad.toInt(),
-                                precio.toDouble()
-                            )
+        listaHeroes.obtenerHeroes().forEach { heroeActual: Heroe ->
+            tabla.addRow(
+                arrayOf(
+                    heroeActual.getIdHeroe(),
+                    heroeActual.getNombre(),
+                    heroeActual.getTipo(),
+                    heroeActual.getRolPrincipal(),
+                    heroeActual.getHabilidadFinal()
+                )
+            )
 
-                            JOptionPane.showMessageDialog(null, "REGISTRO ACTUALIZADO SATISFACTORIAMENTE")
-                            this.show(false)
-                        } else {
-                            JOptionPane.showMessageDialog(null, "VALORES DE MARCA, TIPO O TALLA INCORRECTOS")
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "REGISTRO NO EXISTENTE")
-                    }
-
-                }
-            }
         }
+        return tabla
     }
-*/
+}
 
-    class EliminarHeroe(title: String, listaHeroes: ListaHeroes) : JFrame() {
+class EliminarHeroe(title: String, listaHeroes: ListaHeroes) : JFrame() {
         val panel: JPanel = JPanel()
-        val boton: JButton = JButton("Buscar")
+        val boton: JButton = JButton("Eliminar")
         val txtNombre: JTextField = JTextField()
+        val table: JTable = JTable()
         var listaHeroes: ListaHeroes
 
         init {
@@ -608,15 +482,45 @@ class ActualizarHeroe(title: String, listaHeroes: ListaHeroes): JFrame() {
             setTitle(title)
             //panel.layout = GridLayout()
             panel.layout = null
-            txtNombre.setBounds(10, 10, 100, 30)
-            boton.setBounds(150, 10, 100, 30)
+            table.model = llenarTabla()
+            table.setBounds(10, 50, 500, 100)
+            txtNombre.setBounds(100, 10, 100, 30)
+            boton.setBounds(270, 10, 100, 30)
             panel.add(txtNombre)
             panel.add(boton)
+            panel.add(table)
             this.add(panel)
 
-            setSize(300, 110)
+            setSize(550, 250)
             setLocationRelativeTo(null)
         }
+
+    private fun llenarTabla(): DefaultTableModel {
+        val tabla = DefaultTableModel()
+
+        tabla.addColumn("idHeroes")
+        tabla.addColumn("Nombre")
+        tabla.addColumn("Tipo")
+        tabla.addColumn("Rol Principal")
+        tabla.addColumn("Habilidad Final")
+
+
+        tabla.addRow(arrayOf("idHeroe", "Nombre", "Tipo", "Rol Principal", "Habilidad Final"))
+
+        listaHeroes.obtenerHeroes().forEach { heroeActual: Heroe ->
+            tabla.addRow(
+                arrayOf(
+                    heroeActual.getIdHeroe(),
+                    heroeActual.getNombre(),
+                    heroeActual.getTipo(),
+                    heroeActual.getRolPrincipal(),
+                    heroeActual.getHabilidadFinal()
+                )
+            )
+
+        }
+        return tabla
+    }
 
         internal fun showEventDemo() {
 
@@ -630,12 +534,12 @@ class ActualizarHeroe(title: String, listaHeroes: ListaHeroes): JFrame() {
                                     "${listaHeroes.obtenerHeroe(codigoHeroe)}"*/
                             if (JOptionPane.showConfirmDialog(null, mensaje) == 0) {
                                 listaHeroes.eliminarHeroe(codigoHeroe)
-                                this.show(false)
+                                table.show(false)
 
                             } else {
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null, "REGISTRO NO EXISTENTE")
+                            JOptionPane.showMessageDialog(null, "El registro no existe")
                         }
                     }
 
