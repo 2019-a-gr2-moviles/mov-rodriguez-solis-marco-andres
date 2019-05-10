@@ -15,6 +15,8 @@ class Heroe: Serializable {
         this.rolPrincipal = rolPrincipal
         this.habilidadFinal = habilidadFinal
     }
+
+
     fun getIdHeroe(): String {
         return idHeroe
     }
