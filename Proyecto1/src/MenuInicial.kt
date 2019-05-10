@@ -1,54 +1,30 @@
 import java.awt.*
-import java.awt.event.WindowEvent
 import javax.swing.*
 import javax.swing.table.DefaultTableModel
 
 fun main(args: Array<String>) {
-
-
-    val framePrimero: MenuPrincipal = MenuPrincipal("DOTA 2")
-    framePrimero.showEventDemo()
-    framePrimero.show()
-
-    //val frame = JFrame("DOTA 2")
-
-   /* frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-    frame.preferredSize = Dimension(300, 300)
-    frame.pack()
-    frame.setLocationRelativeTo(null)
-    frame.isVisible = true
-
-    var btnInsertar = JButton("Insertar")
-    var btnVer = JButton("Visualizar")
-    var btnActualizar = JButton("Actualizar")
-    var btnEliminar = JButton("Eliminar")
-
-    frame.contentPane.add(btnInsertar)
-    frame.getContentPane().add(btnVer)
-    frame.getContentPane().add(btnActualizar)
-    frame.getContentPane().add(btnEliminar)*/
+    val pantallaInicial: MenuPrincipal = MenuPrincipal()
+    pantallaInicial.showEventDemo()
+    pantallaInicial.show()
 }
 
-class MenuPrincipal(title: String) : JFrame() {
+class MenuPrincipal: JFrame() {
 
     private val botonVer: JButton = JButton("Ver")
     private val botonActualizar: JButton = JButton("Actualizar")
     private val botonEliminar: JButton = JButton("Eliminar")
     private val botonInsertar: JButton = JButton("Insertar")
+    private val panel: JPanel = JPanel()
+    private val listaHeroes: Lista = Lista()
     val labelImagen: JLabel = JLabel("")
     val iconLogo: ImageIcon  =  ImageIcon("src/imagen/descarga.png")
-    private val panel: JPanel = JPanel()
-    private val listaHeroes: ListaHeroes = ListaHeroes()
-
 
     init {
         labelImagen.icon = iconLogo
-        createUI(title)
+        createUI()
     }
 
-    private fun createUI(title: String) {
-
-        setTitle(title)
+    private fun createUI() {
 
         panel.setLayout(null)
         panel.add(botonVer)
@@ -70,14 +46,6 @@ class MenuPrincipal(title: String) : JFrame() {
 
     internal fun showEventDemo() {
 
-        botonVer.apply {
-            addActionListener {
-                BuscarHeroes("Ver Heroe", listaHeroes).show()
-
-
-
-            }
-        }
         botonActualizar.apply {
             addActionListener {
                 val frameActualizar = ActualizarHeroe("Actualizar Heroe", listaHeroes)
@@ -101,10 +69,17 @@ class MenuPrincipal(title: String) : JFrame() {
                 frameInsertar.show()
             }
         }
+
+        botonVer.apply {
+            addActionListener {
+                VerHeroes("Ver Heroe", listaHeroes).show()
+
+            }
+        }
     }
 }
 
-class insertarHeroe(title: String, listaHeroes: ListaHeroes) : JFrame(){
+class insertarHeroe(title: String, listaHeroes: Lista) : JFrame(){
     val panel: JPanel = JPanel()
     val labelIdHeroe: JLabel = JLabel("idHeroe")
     val labelNombre: JLabel = JLabel("Nombre")
@@ -116,20 +91,17 @@ class insertarHeroe(title: String, listaHeroes: ListaHeroes) : JFrame(){
     val txtTipo: JTextField = JTextField()
     val txtRolPrincipal: JTextField = JTextField()
     val txtHabilidadFinal: JTextField = JTextField()
-    val boton: JButton = JButton("Insertar")
-    var listaHeroes: ListaHeroes
+    val botonInsertar: JButton = JButton("Insertar")
+    var listaHeroes: Lista
 
     init {
         this.listaHeroes = listaHeroes
-
         createUI(title)
     }
 
     private fun createUI(title: String) {
         setTitle(title)
         panel.layout = null
-
-
 
         labelIdHeroe.setBounds(5, 5, 150, 25)
         txtIdHeroe.setBounds(160, 5, 150, 25)
@@ -146,7 +118,7 @@ class insertarHeroe(title: String, listaHeroes: ListaHeroes) : JFrame(){
         labelHabilidadFinal.setBounds(5, 125, 150, 25)
         txtHabilidadFinal.setBounds(160, 125, 150, 25)
 
-        boton.setBounds(90, 170, 130, 30)
+        botonInsertar.setBounds(90, 170, 130, 30)
         panel.layout = null
         panel.add(labelIdHeroe)
         panel.add(txtIdHeroe)
@@ -163,7 +135,7 @@ class insertarHeroe(title: String, listaHeroes: ListaHeroes) : JFrame(){
         panel.add(labelHabilidadFinal)
         panel.add(txtHabilidadFinal)
 
-        panel.add(boton)
+        panel.add(botonInsertar)
 
         this.add(panel)
         setSize(340, 250)
@@ -172,44 +144,35 @@ class insertarHeroe(title: String, listaHeroes: ListaHeroes) : JFrame(){
 
     internal fun showEventDemo() {
 
-        val botonBuscar = boton.apply {
+        botonInsertar.apply {
             addActionListener {
                 if (txtIdHeroe.text != "") {
-                    val codigoHeroe = txtIdHeroe.text
-                    val existe = listaHeroes.existe(codigoHeroe)
-                    if (!existe) {
-
+                    val idHeroe = txtIdHeroe.text
                         val nombre = txtNombre.text
                         val tipo = txtTipo.text
                         val rolPrincipal = txtRolPrincipal.text
                         val habilidadFinal = txtHabilidadFinal.text
 
                         listaHeroes.insertarHeroe(
-                            codigoHeroe, nombre, tipo, rolPrincipal, habilidadFinal
+                            idHeroe, nombre, tipo, rolPrincipal, habilidadFinal
                         )
-
-                        JOptionPane.showConfirmDialog(null, "Está seguro de agregar al Heroe")
-                        //this.show(false)
+                        JOptionPane.showMessageDialog(null, "Se ingreso correctamente")
                     } else {
                         JOptionPane.showMessageDialog(null, "ID ya existente")
                     }
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Llenar campos")
                 }
             }
         }
     }
-}
 
-class BuscarHeroes(title: String, listaHeroes: ListaHeroes): JFrame() {
+
+class VerHeroes(title: String, listaHeroes: Lista): JFrame() {
 
     val frameRegresar: JFrame = JFrame()
     val JPanel = JPanel()
     val tabla: JTable = JTable()
-    val listaHeroes: ListaHeroes
+    val listaHeroes: Lista
    // val botonBack: JButton = JButton("Regresar")
-
 
     init {
         this.listaHeroes = listaHeroes
@@ -233,27 +196,16 @@ class BuscarHeroes(title: String, listaHeroes: ListaHeroes): JFrame() {
 
     private fun llenarTabla(): DefaultTableModel {
         val tabla = DefaultTableModel()
-
         tabla.addColumn("idHeroes")
         tabla.addColumn("Nombre")
         tabla.addColumn("Tipo")
         tabla.addColumn("Rol Principal")
         tabla.addColumn("Habilidad Final")
-
-
         tabla.addRow(arrayOf("idHeroe", "Nombre", "Tipo", "Rol Principal", "Habilidad Final"))
-
-        listaHeroes.obtenerHeroes().forEach { heroeActual: Heroe ->
-            tabla.addRow(
-                arrayOf(
-                    heroeActual.getIdHeroe(),
-                    heroeActual.getNombre(),
-                    heroeActual.getTipo(),
-                    heroeActual.getRolPrincipal(),
-                    heroeActual.getHabilidadFinal()
+        listaHeroes.obtenerHeroes().forEach { heroeActual: Heroe -> tabla.addRow(
+                arrayOf(heroeActual.getIdHeroe(), heroeActual.getNombre(), heroeActual.getTipo(), heroeActual.getRolPrincipal(), heroeActual.getHabilidadFinal()
                 )
             )
-
         }
         return tabla
     }
@@ -269,15 +221,12 @@ class BuscarHeroes(title: String, listaHeroes: ListaHeroes): JFrame() {
                 /*val frameMenu: MenuPrincipal = MenuPrincipal("Dota2")
                 frameMenu.showEventDemo()
                 frameMenu.show()*/
-
-
-
             }
         }
     }*/
 }
 
-class ActualizarHeroe(title: String, listaHeroes: ListaHeroes): JFrame() {
+class ActualizarHeroe(title: String, listaHeroes: Lista): JFrame() {
 
     val labelIdHeroe: JLabel = JLabel("idHeroe")
     val labelNombre: JLabel = JLabel("Nombre")
@@ -293,7 +242,7 @@ class ActualizarHeroe(title: String, listaHeroes: ListaHeroes): JFrame() {
     val botonActualizar: JButton = JButton("Actualizar")
     val JPanel = JPanel()
     val table: JTable = JTable()
-    val listaHeroes: ListaHeroes
+    val listaHeroes: Lista
 
 
     init {
@@ -362,27 +311,20 @@ class ActualizarHeroe(title: String, listaHeroes: ListaHeroes): JFrame() {
         tabla.addColumn("Rol Principal")
         tabla.addColumn("Habilidad Final")
 
-
         tabla.addRow(arrayOf("idHeroe", "Nombre", "Tipo", "Rol Principal", "Habilidad Final"))
 
         listaHeroes.obtenerHeroes().forEach { heroeActual: Heroe ->
             tabla.addRow(
-                arrayOf(
-                    heroeActual.getIdHeroe(),
-                    heroeActual.getNombre(),
-                    heroeActual.getTipo(),
-                    heroeActual.getRolPrincipal(),
-                    heroeActual.getHabilidadFinal()
+                arrayOf(heroeActual.getIdHeroe(), heroeActual.getNombre(), heroeActual.getTipo(), heroeActual.getRolPrincipal(), heroeActual.getHabilidadFinal()
                 )
             )
-
         }
         return tabla
     }
 
     internal fun showEventDemo() {
 
-        val botonBuscar = botonEditar.apply {
+        botonEditar.apply {
             addActionListener {
                 var i = table.getSelectedRow();
                 if(i!=-1){
@@ -402,7 +344,6 @@ class ActualizarHeroe(title: String, listaHeroes: ListaHeroes): JFrame() {
                     JOptionPane.showMessageDialog(null,"Debe escoger un registro");
                 }
             }
-
         }
 
         botonActualizar.apply {
@@ -417,10 +358,10 @@ class ActualizarHeroe(title: String, listaHeroes: ListaHeroes): JFrame() {
 
 
 
-class Eliminar2(title: String, listaHeroes: ListaHeroes):JFrame(){
+class Eliminar2(title: String, listaHeroes: Lista):JFrame(){
     val JPanel = JPanel()
     val table: JTable = JTable()
-    val listaHeroes: ListaHeroes
+    val listaHeroes: Lista
 
     init {
         this.listaHeroes = listaHeroes
@@ -466,12 +407,12 @@ class Eliminar2(title: String, listaHeroes: ListaHeroes):JFrame(){
     }
 }
 
-class EliminarHeroe(title: String, listaHeroes: ListaHeroes) : JFrame() {
+class EliminarHeroe(title: String, listaHeroes: Lista) : JFrame() {
         val panel: JPanel = JPanel()
         val boton: JButton = JButton("Eliminar")
         val txtNombre: JTextField = JTextField()
         val table: JTable = JTable()
-        var listaHeroes: ListaHeroes
+        var listaHeroes: Lista
 
         init {
             this.listaHeroes = listaHeroes
@@ -507,14 +448,8 @@ class EliminarHeroe(title: String, listaHeroes: ListaHeroes) : JFrame() {
 
         tabla.addRow(arrayOf("idHeroe", "Nombre", "Tipo", "Rol Principal", "Habilidad Final"))
 
-        listaHeroes.obtenerHeroes().forEach { heroeActual: Heroe ->
-            tabla.addRow(
-                arrayOf(
-                    heroeActual.getIdHeroe(),
-                    heroeActual.getNombre(),
-                    heroeActual.getTipo(),
-                    heroeActual.getRolPrincipal(),
-                    heroeActual.getHabilidadFinal()
+        listaHeroes.obtenerHeroes().forEach { heroeActual: Heroe -> tabla.addRow(
+                arrayOf(heroeActual.getIdHeroe(), heroeActual.getNombre(), heroeActual.getTipo(), heroeActual.getRolPrincipal(), heroeActual.getHabilidadFinal()
                 )
             )
 
@@ -523,29 +458,20 @@ class EliminarHeroe(title: String, listaHeroes: ListaHeroes) : JFrame() {
     }
 
         internal fun showEventDemo() {
-
-            val botonBuscar = boton.apply {
+             boton.apply {
                 addActionListener {
-                    if (txtNombre.text != "") {
                         val codigoHeroe = txtNombre.text
-                        val existe = listaHeroes.existe(codigoHeroe)
-                        if (existe) {
-                            val mensaje: String = "Está seguro de eliminar el héroe: \n " /*+
-                                    "${listaHeroes.obtenerHeroe(codigoHeroe)}"*/
+                            val mensaje: String = "Está seguro de eliminar el héroe: \n "
                             if (JOptionPane.showConfirmDialog(null, mensaje) == 0) {
                                 listaHeroes.eliminarHeroe(codigoHeroe)
                                 table.show(false)
-
                             } else {
                             }
-                        } else {
-                            JOptionPane.showMessageDialog(null, "El registro no existe")
                         }
                     }
-
                 }
             }
-        }
-    }
+
+
 
 

@@ -1,8 +1,8 @@
 import java.io.*
 
-class LeerEscribirArchivos {
+class Archivo {
     companion object {
-        var ruta: String = "src${File.separatorChar}archivos${File.separatorChar}"
+        var ruta: String = "src/archivos"
         var nombreArchivo: String = "heroe.txt"
 
 
@@ -19,10 +19,10 @@ class LeerEscribirArchivos {
             return arregloHeroe
         }
 
-        fun escribirArchivoHeroe(listaZapatos: ArrayList<Heroe>) {
+        fun escribirArchivoHeroe(listaHeroes: ArrayList<Heroe>) {
             try {
                 val escritorArchivo = ObjectOutputStream(FileOutputStream(ruta + nombreArchivo))
-                escritorArchivo.writeObject(listaZapatos as Serializable)
+                escritorArchivo.writeObject(listaHeroes as Serializable)
             } catch (fnfex: FileNotFoundException) {
                 fnfex.printStackTrace()
             } catch (ioex: IOException) {
