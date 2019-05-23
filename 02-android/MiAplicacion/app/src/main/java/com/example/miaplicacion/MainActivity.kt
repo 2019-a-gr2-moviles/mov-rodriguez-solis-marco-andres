@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_actividad__dos.*
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +27,10 @@ class MainActivity : AppCompatActivity() {
         btn_actividad_dos.setOnClickListener {
             irAActividadDos()
         }
+
+        btn_parcelable.setOnClickListener {
+            irParcelable()
+        }
     }
 
     fun irAActividadDos(){
@@ -38,6 +43,21 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("nombre", "Marco")
         intent.putExtra("edad", 22)
         startActivity(intent)
+    }
+
+    fun irParcelable(){
+        val intentExplicito = Intent(
+            this,
+            Parcelable::class.java
+        )
+        val marco = Usuario("Marco", 22, Date(),12.12)
+        intentExplicito.putExtra("usuario", marco)
+
+        val cachetes = Mascota("Chispita", marco)
+        intentExplicito.putExtra("mascota", cachetes)
+
+        startActivity(intentExplicito)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
