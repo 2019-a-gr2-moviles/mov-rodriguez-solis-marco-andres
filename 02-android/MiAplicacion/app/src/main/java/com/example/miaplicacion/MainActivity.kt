@@ -31,6 +31,14 @@ class MainActivity : AppCompatActivity() {
         btn_parcelable.setOnClickListener {
             irParcelable()
         }
+
+        btn_toast.setOnClickListener{
+            irToast()
+        }
+
+        btn_adapter.setOnClickListener{
+            irAList()
+        }
     }
 
     fun irAActividadDos(){
@@ -58,6 +66,24 @@ class MainActivity : AppCompatActivity() {
 
         startActivity(intentExplicito)
 
+    }
+
+    fun irToast(){
+        val intentExplicito = Intent(
+            this,
+            Main2Activity::class.java
+        )
+
+        startActivity(intentExplicito)
+    }
+
+    fun irAList(){
+        val intentExplicito= Intent(
+            this,
+            ListViewActivity::class.java
+        )
+
+        startActivity(intentExplicito)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
