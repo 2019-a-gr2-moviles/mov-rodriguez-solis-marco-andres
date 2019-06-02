@@ -1,12 +1,16 @@
 package com.example.miaplicacion
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import kotlinx.android.synthetic.main.activity_actividad__dos.*
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +23,67 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
+        btn_actividad_dos.setOnClickListener {
+            irAActividadDos()
+        }
+
+        btn_parcelable.setOnClickListener {
+            irParcelable()
+        }
+
+        btn_toast.setOnClickListener{
+            irToast()
+        }
+
+        btn_adapter.setOnClickListener{
+            irAList()
+        }
+    }
+
+    fun irAActividadDos(){
+        val intent = Intent(
+            this,
+            Actividad_Dos::class.java
+        )
+       // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+        intent.putExtra("nombre", "Marco")
+        intent.putExtra("edad", 22)
+        startActivity(intent)
+    }
+
+    fun irParcelable(){
+        val intentExplicito = Intent(
+            this,
+            Parcelable::class.java
+        )
+        val marco = Usuario("Marco", 22, Date(),12.12)
+        intentExplicito.putExtra("usuario", marco)
+
+        val cachetes = Mascota("Chispita", marco)
+        intentExplicito.putExtra("mascota", cachetes)
+
+        startActivity(intentExplicito)
+
+    }
+
+    fun irToast(){
+        val intentExplicito = Intent(
+            this,
+            Main2Activity::class.java
+        )
+
+        startActivity(intentExplicito)
+    }
+
+    fun irAList(){
+        val intentExplicito= Intent(
+            this,
+            ListViewActivity::class.java
+        )
+
+        startActivity(intentExplicito)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
