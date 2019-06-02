@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ExamenIB</string>
+    <string name="btn_enter" translatable="false">Enter</string>
+    <string name="txt_name" translatable="false">Name</string>
+    <string name="btn_crear_pacientes">Create Pacient</string>
+    <string name="btn_gestion_pacientes">Manage Pacient</string>
+    <string name="txt_nombre_paciente">Name</string>
+    <string name="txt_paellido_paciente">Last Name</string>
+    <string name="txt_hijos">Childrens</string>
+    <string name="txt_fecha_paciente">Birthdate</string>
+    <string name="btn_guardar_paciente">Save</string>
+    <string name="btn_crear_medicamentos">Create Medicines</string>
+    <string name="btn_eliminate_paciente">Delete</string>
+    <string name="btn_gestion_medicamentos">Manage Medicines</string>
+    <string name="btn_update_paciente">Update</string>
+    <string name="txt_caducidad">Expiration date</string>
+    <string name="txt_composicion">Composition</string>
+    <string name="txt_gramos">Grams to ingest</string>
+    <string name="txt_id">Pacient Id</string>
+    <string name="txt_nombre_medicamento">Medicine Name</string>
+    <string name="txt_numero_pastillas">Number of pills</string>
+    <string name="txt_uso">Usage</string>
+    <string name="label_seguro">Social Security?</string>
+    <string name="insertar">has inserted a medication</string>
+    <string name="insertar_paciente">has inserted a pacient</string>
+    <string name="actualizar_medicamento">has updated a medication</string>
+    <string name="eliminar_medicamento">has eliminated a medication</string>
+    <string name="actualizar_paciente">has udated a pacient</string>
+    <string name="eliminar_paciente">has eliminated a pacient</string>
+</resources>
