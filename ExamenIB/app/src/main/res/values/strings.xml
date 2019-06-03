@@ -15,16 +15,16 @@
     <string name="btn_crear_medicamentos">Crear Medicamentos</string>
     <string name="txt_gramos">Gramos a Ingerir</string>
     <string name="txt_nombre_medicamento">Nombre medicamento</string>
-    <string name="txt_composicion">Composicion</string>
+    <string name="txt_composicion">Composición</string>
     <string name="txt_uso">Uso</string>
     <string name="txt_caducidad">Fecha de caducidad</string>
     <string name="txt_numero_pastillas">Número de pastillas</string>
     <string name="txt_id">Id Paciente</string>
     <string name="label_seguro">¿Tiene Seguro?</string>
-    <string name="insertar">ha insertado un medicamento</string>
-    <string name="insertar_paciente">ha insertado un paciente</string>
-    <string name="eliminar_medicamento">ha eliminado un medicamento</string>
-    <string name="actualizar_medicamento">ha actualizado un medicamento</string>
-    <string name="eliminar_paciente">ha eliminado un paciente</string>
-    <string name="actualizar_paciente">ha actualizado un paciente</string>
+    <string name="insertar">insertó un medicamento</string>
+    <string name="insertar_paciente">insertó un paciente</string>
+    <string name="eliminar_medicamento">eliminó un medicamento</string>
+    <string name="actualizar_medicamento">actualizó un medicamento</string>
+    <string name="eliminar_paciente">eliminó un paciente</string>
+    <string name="actualizar_paciente">actualizó un paciente</string>
 </resources>

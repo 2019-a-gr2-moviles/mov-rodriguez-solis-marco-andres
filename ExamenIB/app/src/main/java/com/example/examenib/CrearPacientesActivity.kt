@@ -13,8 +13,9 @@ class CrearPacientesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_crear_pacientes)
 
         btn_crear_paciente.setOnClickListener{
-            Snackbar.make(it, "${Usuario.nombre} ${getString(R.string.insertar_paciente)}", Snackbar.LENGTH_LONG).show()
             crearPaciente()
+            Snackbar.make(it, "${Usuario.nombre} ${getString(R.string.insertar_paciente)}", Snackbar.LENGTH_LONG).show()
+
         }
     }
 
@@ -25,6 +26,12 @@ class CrearPacientesActivity : AppCompatActivity() {
         val hijos = txt_hijos.text.toString().toInt()
         val seguro =  btn_seguro.isChecked
         Paciente.listaPaciente.add(Paciente(nombrePaciente,apellidoPaciente,fechaDeNacimiento,hijos,seguro))
+      /*  val intent = Intent(
+            this,
+            MainPapasActivity::class.java
+        )
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)*/
     }
 
     fun irAMainPapas(){
