@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ExamenIB</string>
+    <string name="app_name">Exam1</string>
     <string name="btn_enter" translatable="false">Enter</string>
     <string name="txt_name" translatable="false">Name</string>
     <string name="btn_crear_pacientes">Create Pacient</string>
