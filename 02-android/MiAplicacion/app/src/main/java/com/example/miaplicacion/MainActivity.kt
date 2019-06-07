@@ -39,6 +39,9 @@ class MainActivity : AppCompatActivity() {
         btn_adapter.setOnClickListener{
             irAList()
         }
+        btn_recycler.setOnClickListener {
+            irARecycler()
+        }
     }
 
     fun irAActividadDos(){
@@ -84,6 +87,14 @@ class MainActivity : AppCompatActivity() {
         )
 
         startActivity(intentExplicito)
+    }
+
+    fun irARecycler(){
+        val intent = Intent(
+            this,
+            ReciclerViewActivity::class.java
+        )
+        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
