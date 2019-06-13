@@ -32,6 +32,16 @@ class AdaptadorPersona(
 
             accionBoton.setOnClickListener {
                 nombreTextView.text = "Me Cambiarooooon!!"
+                contexto.cambiarNombreTextView("WOW!")
+
+                val nuevasPersonas = arrayListOf<Persona>()
+
+                nuevasPersonas.add(Persona("Felipe", "1416487859"))
+                nuevasPersonas.add(Persona("Rafael", "1416454559"))
+                nuevasPersonas.add(Persona("Rafinha", "1416767677"))
+
+                contexto.iniciarRecyclerView(nuevasPersonas,contexto,recyclerView)
+
             }
         }
     }

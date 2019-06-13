@@ -42,6 +42,10 @@ class MainActivity : AppCompatActivity() {
         btn_recycler.setOnClickListener {
             irARecycler()
         }
+
+        btn_intent_respuesta.setOnClickListener {
+            irAIntentRespuesta()
+        }
     }
 
     fun irAActividadDos(){
@@ -96,6 +100,15 @@ class MainActivity : AppCompatActivity() {
         )
         startActivity(intent)
     }
+
+    fun irAIntentRespuesta(){
+        val intentRespuesta = Intent(
+            this,
+            IntentRespuestaActivity::class.java
+        )
+        startActivity(intentRespuesta)
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
