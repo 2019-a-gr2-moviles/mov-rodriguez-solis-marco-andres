@@ -7,13 +7,16 @@
 
     <TextView
             android:text="TextView"
-            android:layout_width="263dp"
-            android:layout_height="76dp" android:id="@+id/txt_view_nombre"
+            android:layout_width="203dp"
+            android:layout_height="74dp" android:id="@+id/txt_view_nombre"
     />
+    <TextView
+            android:layout_width="89dp"
+            android:layout_height="match_parent" android:id="@+id/txt_llamando" android:layout_weight="1"/>
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent" app:srcCompat="@android:drawable/sym_call_outgoing"
-            android:id="@+id/imageButton" android:layout_weight="1"/>
+            android:id="@+id/btn_llamada" android:layout_weight="1"/>
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent" app:srcCompat="@android:drawable/ic_dialog_email"

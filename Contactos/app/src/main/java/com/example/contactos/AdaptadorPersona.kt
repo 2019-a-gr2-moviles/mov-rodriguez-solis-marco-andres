@@ -1,5 +1,7 @@
 package com.example.contactos
 
+import android.graphics.Color
+import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,27 +16,44 @@ class AdaptadorPersona(private val listaContactos: List<Contacto>,
                        private val contexto: ReciclerViewActivity,
                        private val recyclerView: RecyclerView):RecyclerView.Adapter<AdaptadorPersona.MyViewHolder>() {
 
+    private lateinit var mHandler: Handler
+    private lateinit var mRunnable:Runnable
+
     inner class MyViewHolder(view: View):RecyclerView.ViewHolder(view){
         var nombreTextView: TextView
         var accionBoton: ImageButton
+        var llamadaBoton: ImageButton
 
         init{
 
-
             nombreTextView = view.findViewById(R.id.txt_view_nombre) as TextView
             accionBoton = view.findViewById(R.id.btn_enviar_mensaje) as ImageButton
+            llamadaBoton = view.findViewById(R.id.btn_llamada) as ImageButton
+
 
             val layout = view.findViewById(R.id.linear_layout) as LinearLayout
+
             layout.setOnClickListener {
                 Log.i("recycler-view","Layout presionado")
             }
 
-            accionBoton.setOnClickListener {
-                Snackbar.make(it, "Envió el mensaje", Snackbar.LENGTH_LONG).show()
-                contexto.irAMensaje()
+            mHandler = Handler()
 
+            accionBoton.setOnClickListener {
+                Snackbar.make(it, "Mensaje de ayuda", Snackbar.LENGTH_LONG).show()
+                contexto.cambiar("Enviando mensaje...")
+                accionBoton.setColorFilter(Color.argb(255, 243, 12, 26))
+                mRunnable = Runnable {
+                    contexto.irAMensaje()
+                }
+                mHandler.postDelayed(mRunnable, 3000)
             }
 
+
+            llamadaBoton.setOnClickListener {
+                contexto.cambiar("Llamando...")
+                llamadaBoton.setColorFilter(Color.argb(255, 1, 23, 185))
+            }
         }
     }
 
