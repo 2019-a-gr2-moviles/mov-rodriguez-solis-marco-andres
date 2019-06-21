@@ -3,12 +3,17 @@ package com.example.contactos
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_recicler_view.*
+import kotlinx.android.synthetic.main.layout.*
+import java.util.*
 
 class ReciclerViewActivity : AppCompatActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,4 +57,10 @@ class ReciclerViewActivity : AppCompatActivity() {
         )
         startActivity(intent)
     }
+
+    fun cambiar(texto:String){
+        txt_llamando.text = texto
+    }
+
+
 }
