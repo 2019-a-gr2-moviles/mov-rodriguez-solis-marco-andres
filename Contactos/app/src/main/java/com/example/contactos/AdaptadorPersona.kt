@@ -40,7 +40,6 @@ class AdaptadorPersona(private val listaContactos: List<Contacto>,
             mHandler = Handler()
 
             accionBoton.setOnClickListener {
-                Snackbar.make(it, "Mensaje de ayuda", Snackbar.LENGTH_LONG).show()
                 contexto.cambiar("Enviando mensaje...")
                 accionBoton.setColorFilter(Color.argb(255, 243, 12, 26))
                 mRunnable = Runnable {
@@ -53,6 +52,11 @@ class AdaptadorPersona(private val listaContactos: List<Contacto>,
             llamadaBoton.setOnClickListener {
                 contexto.cambiar("Llamando...")
                 llamadaBoton.setColorFilter(Color.argb(255, 1, 23, 185))
+                mRunnable = Runnable {
+                    Snackbar.make(it, "No contesta :'v", Snackbar.LENGTH_LONG).show()
+                    contexto.cambiar("Desconectado")
+                }
+                mHandler.postDelayed(mRunnable, 4000)
             }
         }
     }
