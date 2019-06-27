@@ -46,6 +46,9 @@ class MainActivity : AppCompatActivity() {
         btn_intent_respuesta.setOnClickListener {
             irAIntentRespuesta()
         }
+        btn_conexion.setOnClickListener{
+            irAConexion()
+        }
     }
 
     fun irAActividadDos(){
@@ -107,6 +110,14 @@ class MainActivity : AppCompatActivity() {
             IntentRespuestaActivity::class.java
         )
         startActivity(intentRespuesta)
+    }
+
+    fun irAConexion(){
+        val intentConexion = Intent(
+            this,
+            ConexionHTTPActivity::class.java
+        )
+        startActivity(intentConexion)
     }
 
 
