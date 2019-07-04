@@ -2,8 +2,8 @@ package com.example.miaplicacion
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_actividad__dos.*
@@ -48,6 +48,9 @@ class MainActivity : AppCompatActivity() {
         }
         btn_conexion.setOnClickListener{
             irAConexion()
+        }
+        btn_mapa.setOnClickListener {
+            irAMapa()
         }
     }
 
@@ -118,6 +121,14 @@ class MainActivity : AppCompatActivity() {
             ConexionHTTPActivity::class.java
         )
         startActivity(intentConexion)
+    }
+
+    fun irAMapa(){
+        val intentMapa = Intent(
+            this,
+            MapsActivity::class.java
+        )
+        startActivity(intentMapa)
     }
 
 
