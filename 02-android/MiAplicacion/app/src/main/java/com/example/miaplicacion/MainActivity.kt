@@ -49,6 +49,9 @@ class MainActivity : AppCompatActivity() {
         btn_conexion.setOnClickListener{
             irAConexion()
         }
+        btn_mapa.setOnClickListener {
+            irAMapa()
+        }
     }
 
     fun irAActividadDos(){
@@ -118,6 +121,14 @@ class MainActivity : AppCompatActivity() {
             ConexionHTTPActivity::class.java
         )
         startActivity(intentConexion)
+    }
+
+    fun irAMapa(){
+        val intentMapa = Intent(
+            this,
+            MapsActivity::class.java
+        )
+        startActivity(intentMapa)
     }
 
 

@@ -7,6 +7,7 @@ import com.beust.klaxon.Klaxon
 import java.lang.Exception
 import com.github.kittinunf.result.Result.*
 import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.fuel.httpPost
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -60,7 +61,7 @@ class ConexionHTTPActivity : AppCompatActivity() {
             Log.i("http", "Error instanciando la empresa")
         }
 
-        val url = "http://172.31.104.103:1337/empresa/2"
+        val url = "http://172.31.104.96:1337/empresa/2"
 
         url.httpGet()
             .responseString { request, response, result ->
@@ -80,10 +81,34 @@ class ConexionHTTPActivity : AppCompatActivity() {
                             Log.i("http","${empresaParseada.nombre} ")
                             Log.i("http","${empresaParseada.id} ")
                         }
-
                     }
                 }
-
             }
+
+        val urlCrearEmpresa = "http://172.31.104.96:1337/empresa"
+
+        val parametrosCrearEmpresa = listOf(
+            "nombre" to "Manticore Labs 2", //Este sirve ahora
+            "apellido" to "XYZ", //este no es ejemplo
+            "sueldo" to 12.20, //este no es ejemplo
+            "casado" to false, //este no es ejemplo
+            "hijos" to null //este no es ejemplo
+        )
+
+        // Parametros =
+        urlCrearEmpresa.httpPost(parametrosCrearEmpresa)
+            .responseString { request, response, result ->
+                when(result){
+                    is Failure -> {
+                        val error = result.getException()
+                        Log.i("http", "Error: ${error}")
+                    }
+                    is Success -> {
+                        val empresaString = result.get()
+                        Log.i("http", "$empresaString")
+                    }
+                }
+            }
+
     }
 }
