@@ -52,6 +52,12 @@ class MainActivity : AppCompatActivity() {
         btn_mapa.setOnClickListener {
             irAMapa()
         }
+        btn_ciclo_vida.setOnClickListener {
+            irACicloVida()
+        }
+        btn_ir_fragmentos.setOnClickListener {
+            irAFragmentos()
+        }
     }
 
     fun irAActividadDos(){
@@ -130,6 +136,25 @@ class MainActivity : AppCompatActivity() {
         )
         startActivity(intentMapa)
     }
+
+    fun irACicloVida(){
+        val intentCiclo = Intent(
+            this,
+            CicloVidaActivity::class.java
+        )
+        startActivity(intentCiclo)
+    }
+
+    fun irAFragmentos(){
+        val intentFragmentos = Intent(
+            this,
+            FragmentosActivity::class.java
+        )
+        startActivity(intentFragmentos)
+    }
+
+
+
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
