@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">ExamenIB</string>
+    <string name="txt_name">Nombre</string>
+    <string name="btn_enter">Entrar</string>
+    <string name="btn_gestion_pacientes">Gestionar Paciente</string>
+    <string name="btn_crear_pacientes">Crear Paciente</string>
+    <string name="txt_nombre_paciente">Nombre</string>
+    <string name="txt_paellido_paciente">Apellido</string>
+    <string name="txt_fecha_paciente">Fecha de nacimiento</string>
+    <string name="txt_hijos">Hijos</string>
+    <string name="btn_guardar_paciente">Guardar</string>
+    <string name="btn_eliminate_paciente">Eliminar</string>
+    <string name="btn_update_paciente">Actualizar</string>
+    <string name="btn_gestion_medicamentos">Gestionar Medicamentos</string>
+    <string name="btn_crear_medicamentos">Crear Medicamentos</string>
+    <string name="txt_gramos">Gramos a Ingerir</string>
+    <string name="txt_nombre_medicamento">Nombre medicamento</string>
+    <string name="txt_composicion">Composición</string>
+    <string name="txt_uso">Uso</string>
+    <string name="txt_caducidad">Fecha de caducidad</string>
+    <string name="txt_numero_pastillas">Número de pastillas</string>
+    <string name="txt_id">Id Paciente</string>
+    <string name="label_seguro">¿Tiene Seguro?</string>
+    <string name="insertar">insertó un medicamento</string>
+    <string name="insertar_paciente">insertó un paciente</string>
+    <string name="eliminar_medicamento">eliminó un medicamento</string>
+    <string name="actualizar_medicamento">actualizó un medicamento</string>
+    <string name="eliminar_paciente">eliminó un paciente</string>
+    <string name="actualizar_paciente">actualizó un paciente</string>
+    <string name="title_activity_maps">Map</string>
+</resources>

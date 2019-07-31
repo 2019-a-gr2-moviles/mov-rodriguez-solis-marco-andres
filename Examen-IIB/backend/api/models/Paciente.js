@@ -10,38 +10,34 @@ module.exports = {
   attributes: {
 
     nombre: {
-      type: 'string',
-      required: true,
-      minLength: 3,
-      maxLength: 30,
+      type: 'string'
+
     },
 
     apellido: {
-      type: 'string',
-      required: true,
-      minLength: 3,
-      maxLength: 30,
+      type: 'string'
+
     },
 
     fechaNacimiento: {
-      required: true,
+
       type: 'string'
     },
 
     hijos: {
-      required: true,
-      type: 'number',
-      min: 0
+
+      type: 'number'
+  
     },
 
     tieneSeguro:{      
-      required: true,
+
       type: 'boolean'
     },
     
-    medicamentoDePaciente: {     
-      collection: 'medicamento', 
-      via: 'idPaciente'        
+    medicamentos: {     
+      collection: 'Medicamento', 
+      via: 'paciente_fk'        
     }
 
   },

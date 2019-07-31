@@ -9,56 +9,47 @@ module.exports = {
 
   attributes: {
     gramosAIngerir: {
-      required: true,
-      type: 'number',
-      min: 0
+      
+      type: 'number'
+    
     },
 
     nombre: {
-      type: 'string',
-      required: true,
-      minLength: 5,
-      maxLength: 30,
+      type: 'string'
+    
     },
 
     composicion: {
-      type: 'string',
-      required: true,
-      minLength: 0,
-      maxLength: 20,
+      type: 'string'
+  
     },
 
     usadoPara: {
-      type: 'string',
-      required: true,
-      minLength: 0,
-      maxLength: 20,
+      type: 'string'
+
     },
 
     fechaCaducidad: {
-      required: true,
+ 
       type: 'string'
     },
 
     numeroPastillas: {
-      required: true,
-      type: 'number',
-      min: 0
+
+      type: 'number'
+ 
+    },
+    
+    latitud: {
+      type: 'string'
     },
 
     longitud: {
-      required: true,
-      type: 'string'
-    },
-
-    latitud: {
-      required: true,
       type: 'string'
     },
     
-    idPaciente: {         
-      model: 'paciente',   
-      required: true   
+    paciente_fk: {         
+      model: 'Paciente'  
     }
 
   },
